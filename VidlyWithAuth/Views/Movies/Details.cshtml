@@ -1,0 +1,22 @@
+﻿@using VidlyWithAuth.Models;
+
+@{
+    ViewBag.Title = "Movie Details";
+}
+
+<h2 class="my-3">Movie Details</h2>
+
+<div class="container">
+    <hr />
+    <section class="m-5">
+        <h2>@ViewBag.Movie.Id</h2>
+        <h2>@ViewBag.Movie.Name</h2>
+        <h2>@ViewBag.Movie.ReleaseDate</h2>
+        <h2>@ViewBag.Movie.DateAdded</h2>
+        @foreach (var genre in ViewBag.Movie.Genre)
+        {
+            <span>@genre.Name</span> 
+        }
+        <h2>@ViewBag.Movie.NumberInStock</h2>
+    </section>
+</div>

@@ -1,0 +1,1 @@
+﻿$('.my-select').selectpicker();

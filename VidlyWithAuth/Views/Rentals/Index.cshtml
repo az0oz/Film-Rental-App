@@ -1,0 +1,96 @@
+﻿@using VidlyWithAuth.Models;
+
+@{
+    ViewBag.Title = "Rentals";
+}
+
+<div class="my-3">
+    @Html.ActionLink("New Rental", "New", null, new { @class = "btn btn-primary" })
+</div>
+
+<table id="rentals" class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Customer Name
+            </th>
+            <th>
+                Rented Movie 
+            </th>
+            <th>
+                Date Rented
+            </th>
+            <th>
+                Return
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    </tbody>
+
+</table>
+
+@section scripts
+{
+    <script>
+        $("rentals").DataTable();
+        $(document).ready(function () {
+           let table =  $('#rentals').DataTable({
+                ajax: {
+                    url: "/api/rentals",
+                    dataSrc: ""
+                },
+               columns: [
+                   {
+                       data: "id",
+                   },
+                   {
+                       data: "customer.name",
+                   },
+                   {
+                       data: "movie.name",
+                   },
+                   {
+                       data: "dateRented",
+                       render: function(date) {
+                           let time = new Date(date)
+                           let formatterTime = time.getDate() +
+                               "/" + (time.getMonth() + 1) +
+                               "/" + time.getFullYear();
+
+                           return formatterTime;
+                       }
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn btn-danger js-delete' data-rental-id=" + data + ">Return</button>"
+                        }
+                    }
+                ]
+            });
+
+            $("#rentals").on("click", ".js-delete", function () {
+                let buttonRef = $(this);
+                bootbox.confirm("Are you sure you want to remove this rental ?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/rentals/" + buttonRef.attr("data-rental-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(buttonRef.parents("tr")).remove().draw();
+                            }
+                        })
+                    }
+                })
+            });
+        });
+
+    </script>
+
+}

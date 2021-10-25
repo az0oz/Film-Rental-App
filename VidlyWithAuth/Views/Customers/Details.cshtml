@@ -1,0 +1,18 @@
+﻿@using VidlyWithAuth.Models;
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="my-3">Customer Details</h2>
+
+<div class="container">
+    <hr />
+    <section class="m-5">
+        <h2>@ViewBag.Customer.Id</h2>
+        <h2>@ViewBag.Customer.Name</h2>
+        <h2>@ViewBag.Customer.Birthdate</h2>
+        <h2>@ViewBag.Customer.MembershipType.Name</h2>
+        <h2>@ViewBag.Customer.Address</h2>
+    </section>
+</div>

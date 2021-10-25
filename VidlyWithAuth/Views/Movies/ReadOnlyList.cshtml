@@ -1,0 +1,81 @@
+﻿@using VidlyWithAuth.Models;
+
+@{
+    ViewBag.Title = "Movies";
+}
+
+    <table id="movies" class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Release Date
+                </th>
+                <th>
+                    Total Stock
+                </th>
+                <th>
+                    Number Of Available Copies
+                </th>
+                <th>
+                    Genre
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        </tbody>
+
+    </table>
+
+@section scripts
+{
+    <script>
+        $("movies").DataTable();
+        $(document).ready(function () {
+           let table =  $('#movies').DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+               columns: [
+                   {
+                       data: "id",
+                   },
+                   {
+                       data: "name",
+                   },
+                   {
+                       data: "releaseDate",
+                       render: function(date) {
+                           let time = new Date(date)
+                           let formatterTime = time.getDate() +
+                               "/" + (time.getMonth() + 1) +
+                               "/" + time.getFullYear();
+
+                           return formatterTime;
+                       }
+                    },
+                    {
+                        data: "numberInStock",
+                   },
+                    {
+                        data: "genre[0].movie.numberAvailable",
+                     },
+                    {
+                        data: "genre[0].name",
+                    },
+                ]
+            });
+
+        });
+
+    </script>
+
+   }

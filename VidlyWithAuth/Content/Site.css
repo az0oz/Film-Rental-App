@@ -1,0 +1,60 @@
+﻿
+body {
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+
+.field-validation-error,
+label.error,
+span.error {
+    color: red;
+    margin: 5px;
+}
+
+.input-validation-error,
+input.error
+{
+    border: 2px solid red;
+}
+
+.img-thumbnail {
+    background: none;
+    border: none;
+}
+
+.jumbotron {
+    background: url("../Images/films-backdrop.jpg") center center / cover no-repeat;
+}
+
+.jumbotron > h1{
+    color: white;
+}
+
+p.lead {
+    color: white;
+}
+
+.bg-dark {
+    background-color: #202020 !important;
+}

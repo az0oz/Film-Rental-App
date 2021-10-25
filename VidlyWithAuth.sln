@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VidlyWithAuth", "VidlyWithAuth\VidlyWithAuth.csproj", "{11CCA9B5-A142-48B3-96BF-FA9C6E43B691}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Testing|Any CPU = Testing|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11CCA9B5-A142-48B3-96BF-FA9C6E43B691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11CCA9B5-A142-48B3-96BF-FA9C6E43B691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11CCA9B5-A142-48B3-96BF-FA9C6E43B691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11CCA9B5-A142-48B3-96BF-FA9C6E43B691}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11CCA9B5-A142-48B3-96BF-FA9C6E43B691}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{11CCA9B5-A142-48B3-96BF-FA9C6E43B691}.Testing|Any CPU.Build.0 = Testing|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70A7F902-8A8C-4F12-A6F4-F6F1523F1A7C}
+	EndGlobalSection
+EndGlobal

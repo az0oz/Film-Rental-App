@@ -1,0 +1,129 @@
+﻿@using VidlyWithAuth.Models;
+
+@{
+    ViewBag.Title = "Movies";
+}
+
+<div class="my-3">
+    @Html.ActionLink("New Movie", "Create", null, new { @class = "btn btn-primary" })
+</div>
+
+    <table id="movies" class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Release Date
+                </th>
+                <th>
+                    Total Stock
+                </th>
+                <th>
+                    Number Of Available Copies
+                </th>
+                <th>
+                    Genre
+                </th>
+                <th>
+                    Delete
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @*@foreach (var movie in ViewBag.Movies)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink((string)movie.Name, "Edit", "Movies", routeValues: new { @id = movie.Id }, htmlAttributes: new { @class = "" })
+                    </td>
+                    <td>
+                        @foreach (var genre in movie.Genre)
+                        {
+                            @genre.Name
+                            <br />
+                        }
+                    </td>
+
+
+                </tr>
+            }*@
+
+        </tbody>
+
+    </table>
+
+@section scripts
+{
+    <script>
+        $("movies").DataTable();
+        $(document).ready(function () {
+           let table =  $('#movies').DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+               columns: [
+                   {
+                       data: "id",
+                   },
+                   {
+                       data: "name",
+                       render: function (data, type, movie) {
+                           return "<a href='/movies/edit/" + movie.id + "'>" + movie.name + "</a>";
+                       }
+                   },
+                   {
+                       data: "releaseDate",
+                       render: function(date) {
+                           let time = new Date(date)
+                           let formatterTime = time.getDate() +
+                               "/" + (time.getMonth() + 1) +
+                               "/" + time.getFullYear();
+
+                           return formatterTime;
+                       }
+                    },
+                    {
+                        data: "numberInStock",
+                   },
+                   {
+                       data: "genre[0].movie.numberAvailable",
+                   },
+                    {
+                        data: "genre[0].name",
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn btn-danger js-delete' data-movie-id=" + data + ">Delete</button>"
+                        }
+                    }
+                ]
+            });
+
+            $("#movies").on("click", ".js-delete", function () {
+                let buttonRef = $(this);
+                bootbox.confirm("Are you sure you want to delele this movie", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/movies/" + buttonRef.attr("data-movie-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(buttonRef.parents("tr")).remove().draw();
+                            }
+                        })
+                    }
+                })
+            });
+        });
+
+    </script>
+
+   }
